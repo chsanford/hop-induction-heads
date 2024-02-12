@@ -1,0 +1,32 @@
+inherit:
+  - ../models/small_gpt.yaml
+  - ../wandb.yaml
+  - ../tasks/induction_hops_full_seq.yaml
+
+training:
+  task: "InductionHopsFullSequenceTask"
+  task_kwargs:
+      seq_len: 100
+      char_tokens: 4
+      min_hops: 0
+      max_hops: 16
+  batch_size: 32
+  learning_rate: 0.0001
+  save_every_steps: 10000
+  keep_every_steps: 10000
+  train_steps: 100001
+  warmup_steps: 1000
+  samples: 1000
+
+wandb:
+  project: induction-hops
+  log_every_steps: 10
+
+model:
+  family: "gpt2_model"
+  dim_embedding: 128
+  headcount: 4
+  depth: 3
+  vocab_size: 30
+
+out_dir: models/induction_hops_full_seq

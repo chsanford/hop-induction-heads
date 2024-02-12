@@ -1,0 +1,37 @@
+config: conf/runs/2024-01-19-IHFS-0-16-depth5-10k-samples.yaml
+inherit:
+- /Users/Clayton/Documents/research/projects/transformer-pointers/conf/models/small_gpt.yaml
+- /Users/Clayton/Documents/research/projects/transformer-pointers/conf/wandb.yaml
+- /Users/Clayton/Documents/research/projects/transformer-pointers/conf/tasks/induction_hops_full_seq.yaml
+model:
+  depth: 5
+  dim_embedding: 128
+  dim_feedforward: 0
+  dim_input: 1
+  dim_output: 1
+  family: gpt2_model
+  headcount: 4
+  vocab_size: 30
+out_dir: models/induction_hops_full_seq/26d58334-c370-440c-be25-0d9b9d1d6e60
+test_run: false
+training:
+  batch_size: 32
+  keep_every_steps: 10000
+  learning_rate: 0.0001
+  samples: 10000
+  save_every_steps: 10000
+  seed: 42
+  task: InductionHopsFullSequenceTask
+  task_kwargs:
+    char_tokens: 4
+    max_hops: 16
+    min_hops: 0
+    seq_len: 100
+  train_steps: 100001
+  warmup_steps: 1000
+wandb:
+  entity: claytonhsanford
+  log_every_steps: 10
+  name: induction-hops
+  notes: ''
+  project: induction-hops
